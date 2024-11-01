@@ -8,7 +8,7 @@ interface Props {
 const { authors } = Astro.props;
 ---
 
-<div class="flex flex-row gap-x-8 gap-y-4 flex-wrap justify-center">
+<div class="flex flex-row gap-x-2 gap-y-4 flex-wrap justify-center">
   {
     authors.map((author) => (
       <div class="flex flex-col items-center text-center">
@@ -21,7 +21,7 @@ const { authors } = Astro.props;
             author.name
           )}
           {author.notes && (
-            <sup class="text-xl">
+            <sup class="text-1xl note-sup">
               {author.notes.map(
                 (note, index, array) =>
                   note + (index < array.length - 1 ? "," : "")
@@ -33,3 +33,10 @@ const { authors } = Astro.props;
     ))
   }
 </div>
+
+<style>
+  .note-sup {
+    line-height: 1;
+    vertical-align: top;
+  }
+</style>

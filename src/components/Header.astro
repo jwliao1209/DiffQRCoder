@@ -22,7 +22,7 @@ const { title, authors, institutions, conference, notes, links } = Astro.props a
   <div class="flex flex-col gap-6 items-center">
     <Authors authors={authors} />
     <Institutions institutions={institutions} />
-    {conference && <p class="text-center">{conference}</p>}
+    {conference && <p class="text-center text-2xl">{conference}</p>}
     {notes && <Notes notes={notes} />}
     {links && <Links links={links} />}
   </div>

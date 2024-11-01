@@ -21,7 +21,7 @@ const { institutions } = Astro.props;
           institution.name
           )}
           {institution.notes && (
-            <sup class="text-xl">
+            <sup class="text-1xl flex note-sup">
               {institution.notes.map(
                 (note, index, array) =>
                   note + (index < array.length - 1 ? "," : "")
@@ -33,3 +33,10 @@ const { institutions } = Astro.props;
     ))
   }
 </div>
+
+<style>
+  .note-sup {
+    line-height: 1;
+    vertical-align: top;
+  }
+</style>

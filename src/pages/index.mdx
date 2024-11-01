@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
 title: "DiffQRCoder: Diffusion-based Aesthetic QR Code Generation with Scanning Robustness Guided Iterative Refinement"
-description: Simple project page template for your research paper, built with Astro and Tailwind CSS
+description: "WACV 2025 paper"
 favicon: favicon.svg
 thumbnail: screenshot.png
 ---
@@ -19,6 +19,9 @@ import YouTubeVideo from "../components/YouTubeVideo.astro";
 import LaTeX from "../components/LaTeX.astro";
 
 import outside from "../assets/outside.mp4";
+import teaser from "../assets/teaser.png"
+
+
 import Splat from "../components/Splat.tsx"
 
 import CodeBlock from "../components/CodeBlock.astro";
@@ -43,6 +46,7 @@ export const components = {pre: CodeBlock}
     },
     {
       name: "Li-Xuan Peng",
+      url: "https://alexpeng517.github.io/",
       notes: ["*", "1"],
     },
     {
@@ -81,7 +85,7 @@ export const components = {pre: CodeBlock}
   links={[
     {
       name: "Paper",
-      url: "https://www.arxiv.org/abs/2409.06355",
+      url: "https://www.arxiv.org/pdf/2409.06355",
       icon: "fa-solid:file-pdf",
     },
     {
@@ -98,7 +102,7 @@ export const components = {pre: CodeBlock}
   />
 
 <Figure caption="<b>Figure. Aesthetic QR codes generated from DiffQRCoder.</b> Our method takes a QR code and a text prompt as input to generate an aesthetic QR code. We leverage the pre-trained ControlNet and guide the generation process using our proposed Scanning Robust Perceptual Guidance (SRPG) to ensure the generated code is both scannable and attractive.">
-    <image src="/src/assets/teaser.png" height="800" alt="Diagram of the transformer deep learning architecture." />
+    <Image source={teaser} altText="teaser"/>
 </Figure>
 
 
@@ -122,7 +126,7 @@ Scanning Robust Loss (SRL) is designed at the module level, tailored to the QR c
 First, we encode target QR code <LaTeX formula="\mathbf{y}" inline /> and prompt <LaTeX formula="p" inline /> to embeddings for ControlNet input. In Stage-1, we utilize the pre-trained ControlNet to generate an attractive yet unscannable QR code. In Stage-2, we convert the QR code from Stage-1 into a latent representation <LaTeX formula="\tilde{z}_T" inline /> by adding Gaussian noise and transforming the <LaTeX formula="\mathbf{y}" inline /> to <LaTeX formula="\tilde{\mathbf{y}}" inline />, which has a more similar pattern as <LaTeX formula="\hat{\mathbf{x}}" inline />, using Qart. Finally, we feed the latent and the transformed code into ControlNet, guided by Scanning Robust Perceptual Guidance (SRPG), to create an aesthetic QR code with scannability.
 
 <Figure caption="<b>Figure.</b> An overview of our two-stage pipeline with Scanning Robust Perceptual Guidance (SRPG). ">
-    <image src="/src/assets/two_stage_generation_pipeline.png" height="800" />
+    <image src="src/assets/two_stage_generation_pipeline.png" height="800" />
 </Figure>
 
 
@@ -145,8 +149,6 @@ Our method outperforms QR Diffusion and QR Code AI Art in SSR, CLIP aesthetic sc
 | QRBTF | 56\% | 7.0156 | 0.3033 |
 | DiffQRCoder (Ours) | 99\% | 6.8233 | 0.2992 |
 
-
-## Analytics
 
 
 ## BibTeX Citation
