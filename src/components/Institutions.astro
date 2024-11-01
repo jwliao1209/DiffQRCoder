@@ -1,28 +1,28 @@
 ---
-import type { Author } from "../types/types";
+import type { Institution } from "../types/types";
 
 interface Props {
-  authors: Author[];
+  institutions: Institution[];
 }
 
-const { authors } = Astro.props;
+const { institutions } = Astro.props;
 ---
 
 <div class="flex flex-row gap-x-8 gap-y-4 flex-wrap justify-center">
   {
-    authors.map((author) => (
+    institutions.map((institution) => (
       <div class="flex flex-col items-center text-center">
         <span class="text-xl flex flex-row">
-          {author.url ? (
-            <a href={author.url} class="">
-              {author.name}
+          {institution.url ? (
+            <a href={institution.url} class="">
+              {institution.name}
             </a>
           ) : (
-            author.name
+          institution.name
           )}
-          {author.notes && (
+          {institution.notes && (
             <sup class="text-xl">
-              {author.notes.map(
+              {institution.notes.map(
                 (note, index, array) =>
                   note + (index < array.length - 1 ? "," : "")
               )}

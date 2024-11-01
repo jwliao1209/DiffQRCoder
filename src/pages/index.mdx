@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: Academic Project Page Template
+title: "DiffQRCoder: Diffusion-based Aesthetic QR Code Generation with Scanning Robustness Guided Iterative Refinement"
 description: Simple project page template for your research paper, built with Astro and Tailwind CSS
 favicon: favicon.svg
 thumbnail: screenshot.png
@@ -19,8 +19,8 @@ import YouTubeVideo from "../components/YouTubeVideo.astro";
 import LaTeX from "../components/LaTeX.astro";
 
 import outside from "../assets/outside.mp4";
-import transformer from "../assets/transformer.webp";
 import Splat from "../components/Splat.tsx"
+import teaser from "../assets/teaser.pdf"
 
 import CodeBlock from "../components/CodeBlock.astro";
 export const components = {pre: CodeBlock}
@@ -29,125 +29,134 @@ export const components = {pre: CodeBlock}
   title={frontmatter.title}
   authors={[
     {
-      name: "Roman Hauksson",
-      url: "https://roman.technology",
-      institution: "Independent",
-      notes: ["*", "†"],
+      name: "Jia-Wei Liao",
+      url: "https://jwliao1209.github.io/",
+      notes: ["1", "2"],
     },
     {
-      name: "Author Two",
-      institution: "Institution Two",
-      notes: ["*", "†"],
+      name: "Winston Wang",
+      url: "https://dinoslow.github.io/",
+      notes: ["*", "1"],
     },
     {
-      name: "Author Three",
-      institution: "Institution Three",
-      notes: ["†"],
+      name: "Tzu-Sian Wang",
+      notes: ["*", "1"],
     },
     {
-      name: "Author Four",
-      institution: "Institution Four",
+      name: "Li-Xuan Peng",
+      notes: ["*", "1"],
+    },
+    {
+      name: "Ju-Hsuan Weng",
+      notes: ["1", "2"],
+    },
+    {
+      name: "Cheng-Fu Chou",
+      url: "https://www.csie.ntu.edu.tw/~ccf/",
+      notes: ["2"],
+    },
+    {
+      name: "Jun-Cheng Chen",
+      url: "https://homepage.citi.sinica.edu.tw/pages/pullpull/",
+      notes: ["1"],
     },
   ]}
-  conference="Conference Name"
+  institutions={[
+    {
+      name: "Research Center for Information Technology Innovation, Academia Sinica",
+      notes: ["1"],
+    },
+    {
+      name: "National Tawian University",
+      notes: ["2"],
+    },
+
+  ]}
+  conference="WACV 2025"
   notes={[
     {
       symbol: "*",
-      text: "author note one",
-    },
-    {
-      symbol: "†",
-      text: "author note two",
+      text: " Equal contribution",
     },
   ]}
   links={[
     {
       name: "Paper",
-      url: "",
+      url: "https://www.arxiv.org/abs/2409.06355",
       icon: "fa-solid:file-pdf",
     },
     {
       name: "Code",
-      url: "https://github.com/RomanHauksson/academic-project-astro-template",
+      url: "",
       icon: "mdi:github",
     },
     {
       name: "arXiv",
-      url: "",
+      url: "https://www.arxiv.org/abs/2409.06355",
       icon: "academicons:arxiv",
     },
   ]}
   />
 
-<Video source={outside} />
+<Figure caption="<b>Figure. Aesthetic QR codes generated from DiffQRCoder.</b> Our method takes a QR code and a text prompt as input to generate an aesthetic QR code. We leverage the pre-trained ControlNet and guide the generation process using our proposed Scanning Robust Perceptual Guidance (SRPG) to ensure the generated code is both scannable and attractive.">
+    <image src="src/assets/teaser.png" height="800" alt="Diagram of the transformer deep learning architecture." />
+</Figure>
 
-<HighlightedSection>
+
 
 ## Abstract
 
-This is a live demo for a template you can use to create a simple project page for your research paper. See the code for the template and instructions on how to use it yourself [here](https://github.com/RomanHauksson/academic-project-astro-template). It's made with the [Astro web framework](https://astro.build/) and styled with [Tailwind CSS](https://tailwindcss.com/). You write the content in [MDX](https://mdxjs.com/), which enables markdown formatting like **bold**, _italics_, and ~strikethrough~, as well as custom components like <SmallCaps>small caps.</SmallCaps>
+With the success of Diffusion Models for image generation, the technologies also have revolutionized the aesthetic Quick Response (QR) code generation. Despite significant improvements in visual attractiveness for the beautified codes, their scannabilities are usually sacrificed and thus hinder their practical uses in real-world scenarios. To address this issue, we propose a novel **Diff**usion-based **QR** **Code** generato**r** (DiffQRCoder) to effectively craft both scannable and visually pleasing QR codes. The proposed approach introduces Scanning-Robust Perceptual Guidance (SRPG), a new diffusion guidance for Diffusion Models to guarantee the generated aesthetic codes to obey the ground-truth QR codes while maintaining their attractiveness during the denoising process. Additionally, we present another post-processing technique, Scanning Robust Manifold Projected Gradient Descent (SR-MPGD), to further enhance their scanning robustness through iterative latent space optimization. With extensive experiments, the results demonstrate that our approach not only outperforms other compared methods in Scanning Success Rate (SSR) with better or comparable CLIP aesthetic score (CLIP-aes.) but also significantly improves the SSR of the ControlNet-only approach from 60\% to 99\%. The subjective evaluation indicates that our approach achieves promising visual attractiveness to users as well. Finally, even with different scanning angles and the most rigorous error tolerance settings, our approach robustly achieves over 95\% SSR, demonstrating its capability for real-world applications.
 
-</HighlightedSection>
 
-## Figures
+## Method
 
-Use the figure component to display images, videos, equations, or any other element, with an optional caption.
+### Scanning Robust Loss
+Scanning Robust Loss (SRL) is designed at the module level, tailored to the QR code mechanism. The process begins by constructing a pixel-wise error matrix that measures the differences between the pixel values of the target QR code and the grayscale image. Subsequently, the error for each module is re-weighted using a Gaussian kernel, and the central submodule is extracted to implement an early-stopping mechanism. The mechanism stops refining the module and evaluating its error once the average pixel value of the central submodule matches the center pixel value of the target module. Finally, SRL can be calculated as the average error across all modules in the code.
 
-<Figure
-    caption="Diagram of the transformer deep learning architecture."
-  >
-    <Image source={transformer} altText="Diagram of the transformer deep learning architecture." />
+<Figure caption="<b>Figure.</b> An illustration of Scanning Robust Loss (SRL).">
+    <image src="src/assets/srl.png" height="800" />
 </Figure>
 
-## Two columns
 
-Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+### Two-stage Pipeline with Scanning Robust Perceptual Guidance
+First, we encode target QR code <LaTeX formula="\mathbf{y}" inline /> and prompt <LaTeX formula="p" inline /> to embeddings for ControlNet input. In Stage-1, we utilize the pre-trained ControlNet to generate an attractive yet unscannable QR code. In Stage-2, we convert the QR code from Stage-1 into a latent representation <LaTeX formula="\tilde{z}_T" inline /> by adding Gaussian noise and transforming the <LaTeX formula="\mathbf{y}" inline /> to <LaTeX formula="\tilde{\mathbf{y}}" inline />, which has a more similar pattern as <LaTeX formula="\hat{\mathbf{x}}" inline />, using Qart. Finally, we feed the latent and the transformed code into ControlNet, guided by Scanning Robust Perceptual Guidance (SRPG), to create an aesthetic QR code with scannability.
 
-<TwoColumns>
-  <Figure slot="left" caption="Take a look at this YouTube video.">
-    <YouTubeVideo videoId="wjZofJX0v4M" />
-  </Figure>
-  <Figure slot="right" caption="Now look at this Gaussian Splat, rendered with a React component.">
-    <Splat client:idle />
-  </Figure>
-</TwoColumns>
+<Figure caption="<b>Figure.</b> An overview of our two-stage pipeline with Scanning Robust Perceptual Guidance (SRPG). ">
+    <image src="src/assets/two_stage_generation_pipeline.png" height="800" />
+</Figure>
 
-## Heading levels
 
-Use headings to divide your content into sections.
+## Experiments
 
-### Heading 3
+### Evaluation Metrics
 
-Go down a level to heading 3...
+We use qr-verify to measure Scanning Success Rate (SSR) of aesthetic QR codes. For the quantitative assessment of aesthetics, we use CLIP aesthetic score predictor to reflect image quality and visual appeal.  This score is referred to as the CLIP aesthetic score (CLIP-aes). We also adopt CLIP-score to assess the text-image alignment of generated aesthetic QR codes.
 
-#### Heading 4
 
-...and down again to heading 4.
+### Comparison with Other Generative-based Methods
 
-## LaTeX
+As shown in Tab., we present the quantitative results of our method compared to previous generative-based methods.
+Our method outperforms QR Diffusion and QR Code AI Art in SSR, CLIP aesthetic score, and CLIP-score. Compared with QRBTF, our method significantly enhances the SSR, albeit with a little trade-off with CLIP aesthetic score. Notably, the text-image alignment measured by CLIP-score shows that our method is close to QRBTF, indicating our method adheres to prompts without distortion.
 
-You can also add LaTeX formulas, rendered during the build process using [KaTeX](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: <LaTeX inline formula="a^2 + b^2 = c^2" />. Or, you can write them as a block:
-
-<LaTeX formula="\int_a^b f(x) dx" />
-
-## Tables
-
-You can add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
-
-| Model | Accuracy | F1 score | Training time (hours) |
+| Method | SSR | CLIP-aes. | CLIP-score |
 | :--- | :---: | :---: | :---: |
-| BERT-base | 0.89 | 0.87 | 4.5 |
-| RoBERTa-large | 0.92 | 0.91 | 7.2 |
-| DistilBERT | 0.86 | 0.84 | 2.1 |
-| XLNet | 0.90 | 0.89 | 6.8 |
+| QR Code AI Art | 90\% | 5.7003 | 0.2341 |
+| QR Diffusion | 96\% | 5.5150 | 0.2780 |
+| QRBTF | 56\% | 7.0156 | 0.3033 |
+| DiffQRCoder (Ours) | 99\% | 6.8233 | 0.2992 |
 
-## BibTeX citation
+
+## Analytics
+
+
+## BibTeX Citation
 
 ```bibtex
-@misc{roman2024academic,
-  author = "{Roman Hauksson}",
-  title = "Academic Project Page Template",
-  year = "2024",
-  howpublished = "\url{https://research-template.roman.technology}",
+@inproceedings{liao2024diffqrcoder,
+  title     = {DiffQRCoder: Diffusion-based Aesthetic QR Code Generation with Scanning Robustness Guided Iterative Refinement},
+  author    = {Jia-Wei Liao, Winston Wang, Tzu-Sian Wang, Li-Xuan Peng, Ju-Hsian Weng, Cheng-Fu Chou, Jun-Cheng Chen},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year      = {2025},
 }
 ```

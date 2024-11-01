@@ -1,7 +1,12 @@
 type Author = {
   name: string;
   url?: string;
-  institution?: string;
+  notes?: string[];
+}
+
+type Institution = {
+  name: string;
+  url?: string;
   notes?: string[];
 }
 
@@ -16,4 +21,4 @@ type Note = {
   text: string;
 }
 
-export { Author, Link, Note };
+export { Author, Institution, Link, Note };
