@@ -12,6 +12,7 @@ const { source, altText, width, height } = Astro.props;
 ---
 
 <AstroImage
+  style="image-rendering: crisp-edges;"
   class="max-h-[35rem] w-max object-contain !px-0"
   src={source}
   alt={altText}
