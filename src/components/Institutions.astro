@@ -1,4 +1,5 @@
 ---
+import { Image as AstroImage } from "astro:assets";
 import type { Institution } from "../types/types";
 
 interface Props {
@@ -14,7 +15,12 @@ const { institutions } = Astro.props;
       <div class="flex flex-col items-center text-center">
         <span class="text-xl flex flex-row items-center">
           {institution.logo && (
-            <img src={institution.logo} alt={`${institution.name} logo`} class="logo mr-2" />
+            <AstroImage
+              style="image-rendering: crisp-edges;"
+              class="logo mr-2"
+              src={institution.logo}
+              alt={`${institution.name} logo`}
+            />
           )}
           {institution.url ? (
             <a href={institution.url} class="">
