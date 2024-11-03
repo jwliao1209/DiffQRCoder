@@ -8,6 +8,7 @@ type Institution = {
   name: string;
   url?: string;
   notes?: string[];
+  logo?: string;
 }
 
 type Link = {

@@ -12,13 +12,16 @@ const { institutions } = Astro.props;
   {
     institutions.map((institution) => (
       <div class="flex flex-col items-center text-center">
-        <span class="text-xl flex flex-row">
+        <span class="text-xl flex flex-row items-center">
+          {institution.logo && (
+            <img src={institution.logo} alt={`${institution.name} logo`} class="logo mr-2" />
+          )}
           {institution.url ? (
             <a href={institution.url} class="">
               {institution.name}
             </a>
           ) : (
-          institution.name
+            institution.name
           )}
           {institution.notes && (
             <sup class="text-1xl flex note-sup">
@@ -38,5 +41,9 @@ const { institutions } = Astro.props;
   .note-sup {
     line-height: 1.5;
     vertical-align: top;
+  }
+  .logo {
+    width: 50px;
+    height: 50px;
   }
 </style>
