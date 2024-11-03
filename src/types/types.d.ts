@@ -8,7 +8,7 @@ type Institution = {
   name: string;
   url?: string;
   notes?: string[];
-  logo?: string;
+  logo?: ImageMetadata;
 }
 
 type Link = {
