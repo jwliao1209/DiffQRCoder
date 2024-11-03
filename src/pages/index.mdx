@@ -19,9 +19,12 @@ import YouTubeVideo from "../components/YouTubeVideo.astro";
 import LaTeX from "../components/LaTeX.astro";
 
 import outside from "../assets/outside.mp4";
-import teaser from "../assets/teaser.png"
-import srl from "../assets/srl.png"
-import two_stage_generation_pipeline from "../assets/two_stage_generation_pipeline.png"
+import teaser from "../assets/teaser.png";
+import srl from "../assets/srl.png";
+import two_stage_generation_pipeline from "../assets/two_stage_generation_pipeline.png";
+import visual_comparisons from "../assets/visual_comparisons.png";
+import different_level from "../assets/different_level.png";
+import different_message from "../assets/different_message.png";
 
 
 import Splat from "../components/Splat.tsx"
@@ -139,18 +142,37 @@ First, we encode target QR code <LaTeX formula="\mathbf{y}" inline /> and prompt
 We use qr-verify to measure Scanning Success Rate (SSR) of aesthetic QR codes. For the quantitative assessment of aesthetics, we use CLIP aesthetic score predictor to reflect image quality and visual appeal.  This score is referred to as the CLIP aesthetic score (CLIP-aes). We also adopt CLIP-score to assess the text-image alignment of generated aesthetic QR codes.
 
 
-### Comparison with Other Generative-based Methods
+### Quantitative Results
 
 As shown in Tab., we present the quantitative results of our method compared to previous generative-based methods.
 Our method outperforms QR Diffusion and QR Code AI Art in SSR, CLIP aesthetic score, and CLIP-score. Compared with QRBTF, our method significantly enhances the SSR, albeit with a little trade-off with CLIP aesthetic score. Notably, the text-image alignment measured by CLIP-score shows that our method is close to QRBTF, indicating our method adheres to prompts without distortion.
 
-| Method | SSR | CLIP-aes. | CLIP-score |
-| :--- | :---: | :---: | :---: |
-| QR Code AI Art | 90\% | 5.7003 | 0.2341 |
-| QR Diffusion | 96\% | 5.5150 | 0.2780 |
-| QRBTF | 56\% | 7.0156 | 0.3033 |
-| DiffQRCoder (Ours) | 99\% | 6.8233 | 0.2992 |
+| Method | SSR ↑ | CLIP-aes. ↑ | CLIP-score ↑ | User Study Rank ↓ |
+| :--- | :---: | :---: | :---: | :---: |
+| QR Code AI Art | 90\% | 5.7003 | 0.2341 | 2.71  |
+| QR Diffusion | <span style="color:blue; text-decoration:underline">96%</span> | 5.5150 | 0.2780 | 3.18 |
+| QRBTF | 56\% | <span style="color:red; font-weight:bold">7.0156</span> | <span style="color:red; font-weight:bold">0.3033</span> | <span style="color:red; font-weight:bold">1.86</span> |
+| DiffQRCoder (Ours) | <span style="color:red; font-weight:bold">99%</span> | <span style="color:blue; text-decoration:underline">6.8233</span> | <span style="color:blue; text-decoration:underline">0.2992</span> | <span style="color:blue; text-decoration:underline">2.25</span> |
 
+<p class="text-center text-zinc-700"><strong>Table.&nbsp;</strong>Quantitative comparison with other generative-based methods</p>
+
+### Qualitative Results
+
+DiffQRCoder can generate attractive and scannable QR codes with different encoded messages and prompts.
+
+<Figure caption="<b>Figure.</b> Qualitative comparison with other generative-based methods.">
+    <Image source={visual_comparisons} width="1000" altText="visual comparisons"/>
+</Figure>
+
+
+<Figure caption="<b>Figure.</b> Qualitative results for different QR code messages. ">
+    <Image source={different_message} width="1000" altText="different message"/>
+</Figure>
+
+
+<Figure caption="<b>Figure.</b>Qualitative results for different QR code error correction levels. ">
+    <Image source={different_level} width="1000" altText="different level"/>
+</Figure>
 
 
 ## BibTeX Citation
