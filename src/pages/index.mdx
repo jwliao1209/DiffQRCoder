@@ -20,8 +20,8 @@ import LaTeX from "../components/LaTeX.astro";
 
 import outside from "../assets/outside.mp4";
 import teaser from "../assets/teaser.png";
-import srl from "../assets/srl.png";
-import two_stage_generation_pipeline from "../assets/two_stage_generation_pipeline.png";
+import srl from "../assets/srl.gif";
+import diffqrcoder from "../assets/diffqrcoder.gif";
 import visual_comparisons from "../assets/visual_comparisons.png";
 import different_level from "../assets/different_level.png";
 import different_message from "../assets/different_message.png";
@@ -148,7 +148,7 @@ Scanning Robust Loss (SRL) is designed at the module level, tailored to the QR c
 First, we encode target QR code <LaTeX formula="\mathbf{y}" inline /> and prompt <LaTeX formula="p" inline /> to embeddings for ControlNet input. In Stage-1, we utilize the pre-trained ControlNet to generate an attractive yet unscannable QR code. In Stage-2, we convert the QR code from Stage-1 into a latent representation <LaTeX formula="\tilde{z}_T" inline /> by adding Gaussian noise and transforming the <LaTeX formula="\mathbf{y}" inline /> to <LaTeX formula="\tilde{\mathbf{y}}" inline />, which has a more similar pattern as <LaTeX formula="\hat{\mathbf{x}}" inline />, using Qart. Finally, we feed the latent and the transformed code into ControlNet, guided by Scanning Robust Perceptual Guidance (SRPG), to create an aesthetic QR code with scannability.
 
 <Figure caption="<b>Figure.</b> An overview of our two-stage pipeline with Scanning Robust Perceptual Guidance (SRPG). ">
-    <Image source={two_stage_generation_pipeline} width="1000" altText="two stage generation pipeline"/>
+    <Image source={diffqrcoder} width="1000" altText="two stage generation pipeline"/>
 </Figure>
 
 
