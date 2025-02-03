@@ -17,6 +17,10 @@ Ju-Hsian Weng,
 
 This repository implements a two-stage iterative refinement pipeline that leverages a pretrained ControlNet to generate aesthetic QR codes. Check out the project page [here](https://jwliao1209.github.io/DiffQRCoder/).
 
+
+<img width="800" alt="srpg" src="figures/diffqrcoder.gif">
+
+
 ## :wrench: Setup
 To set up the virtual environment and install the required packages, use the following commands:
 ```
@@ -26,7 +30,7 @@ pip install -r requirements.txt
 ```
 
 
-## :rocket: Generate QRCode
+## :rocket: Generating  Aesthetic QR Code
 To generate the aesthetic qrcode, run the following:
 ```
 python generate_qrcode.py \
