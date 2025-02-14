@@ -262,7 +262,7 @@ class DiffQRCoderPipeline(StableDiffusionControlNetPipeline):
             # Nested lists as ControlNet condition
             if isinstance(qrcode[0], list):
                 # Transpose the nested image list
-                qrcode = [list(t) for t in zip(*image)]
+                qrcode = [list(t) for t in zip(*qrcode)]
 
             for qrcode_ in qrcode:
                 qrcode_ = self.prepare_image(
