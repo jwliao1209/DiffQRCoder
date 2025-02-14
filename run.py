@@ -123,4 +123,4 @@ if __name__ == "__main__":
         srmpgd_num_iteration=args.srmpgd_num_iteration,
         srmpgd_lr=args.srmpgd_lr,
     )
-    result.images[0].save(Path(args.output_folder, f"aesthetic_qrcode.png"))
+    result.images[0].save(Path(args.output_folder, "aesthetic_qrcode.png"))
