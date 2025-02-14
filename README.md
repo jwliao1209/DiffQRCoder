@@ -33,18 +33,28 @@ pip install -r requirements.txt
 ## :rocket: Generating  Aesthetic QR Code
 To generate the aesthetic qrcode, run the following:
 ```
-python generate_qrcode.py \
+python run.py \
     --controlnet_ckpt <checkpoint of controlnet> \
     --pipe_ckpt <checkpoint of pipeline> \
-    --conditional_image_path <path of qrcode image> \
-    --output_folder <folder of generated image> \
+    --qrcode_path <path of qrcode image> \
+    --qrcode_module_size <qrcode module size> \
+    --qrcode_padding <qrcode padding> \
     --neg_prompt <negative prompt> \
     --num_inference_steps <number of inference step> \
-    --qrcode_image_module_size <qrcode image module size> \
-    --qrcode_image_padding <qrcode image padding> \
+    --controlnet_conditioning_scale <controlnet conditioning scale> \
     -srg <scanning robust guidance scale> \
-    -pg <perceptual guidance scale>
+    -pg <perceptual guidance scale> \
+    --srmpgd_num_iteration <number of srmpgd iterations> \
+    --srmpgd_lr <srmpgd learning rate> \
+    --device <device of running the code> \
+    --output_folder <folder of generated image>
+```
 
+
+## :wrench: Unit Test
+To execute the unit test, run the following:
+```
+bash scripts/run_test.sh
 ```
 
 

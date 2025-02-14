@@ -1,0 +1,1 @@
+from .pipeline_diffqrcoder import DiffQRCoderPipeline
