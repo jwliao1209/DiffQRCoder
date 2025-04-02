@@ -1,12 +1,4 @@
-from dataclasses import dataclass
-from typing import Any, Dict, Optional, List, Tuple, Union
-
-import numpy as np
 import torch
-from diffusers.image_processor import VaeImageProcessor
-from diffusers.models import AutoencoderKL
-from diffusers.schedulers import DDIMScheduler
-from diffusers.utils import BaseOutput
 from torch import nn
 
 from diffqrcoder.losses import PerceptualLoss, ScanningRobustLoss

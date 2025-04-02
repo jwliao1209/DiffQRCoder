@@ -1,17 +1,14 @@
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 
-import numpy as np
-import PIL.Image
 import torch
-import torch.nn.functional as F
-from diffusers import DiffusionPipeline, StableDiffusionControlNetPipeline
+from diffusers import StableDiffusionControlNetPipeline
 from diffusers.callbacks import MultiPipelineCallbacks, PipelineCallback
 from diffusers.image_processor import PipelineImageInput
-from diffusers.models import AutoencoderKL, ControlNetModel
+from diffusers.models import ControlNetModel
 from diffusers.pipelines.stable_diffusion import StableDiffusionPipelineOutput
 from diffusers.pipelines.controlnet import MultiControlNetModel
 from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion import retrieve_timesteps
-from diffusers.utils import is_torch_xla_available
+from diffusers.utils import is_torch_xla_available, deprecate
 from diffusers.utils.torch_utils import is_compiled_module, is_torch_version
 from tqdm import trange
 
