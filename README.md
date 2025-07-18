@@ -68,3 +68,7 @@ If you use this code, please cite the following:
   year      = {2025},
 }
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=jwliao1209/DiffQRCoder&type=Date)](https://www.star-history.com/#jwliao1209/DiffQRCoder&Date)
