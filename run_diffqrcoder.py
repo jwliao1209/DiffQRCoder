@@ -24,7 +24,7 @@ def parse_arguments() -> Namespace:
     parser.add_argument(
         "--qrcode_path",
         type=str,
-        default="qrcode/thanks_reviewer.png"
+        default="qrcodes/thanks_reviewer.png"
     )
     parser.add_argument(
         "--qrcode_module_size",
@@ -84,16 +84,16 @@ def parse_arguments() -> Namespace:
         default="cuda"
     )
     parser.add_argument(
-        "--output_folder",
+        "--output_path",
         type=str,
-        default="output"
+        default="results/pycon.png",
     )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_arguments()
-    os.makedirs(args.output_folder, exist_ok=True)
+    os.makedirs(os.path.dirname(args.output_path), exist_ok=True)
 
     qrcode = load_image(args.qrcode_path)
     controlnet = ControlNetModel.from_pretrained(
@@ -123,4 +123,4 @@ if __name__ == "__main__":
         srmpgd_num_iteration=args.srmpgd_num_iteration,
         srmpgd_lr=args.srmpgd_lr,
     )
-    result.images[0].save(Path(args.output_folder, "aesthetic_qrcode.png"))
+    result.images[0].save(args.output_path)

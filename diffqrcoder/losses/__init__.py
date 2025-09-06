@@ -1,2 +1,3 @@
 from .perceptual_loss import PerceptualLoss
 from .scanning_robust_loss import ScanningRobustLoss
+from .personalized_code_loss import PersonalizedCodeLoss

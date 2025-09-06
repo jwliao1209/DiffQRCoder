@@ -9,9 +9,10 @@ from ..image_processor import convert_to_gray, image_binarize, min_max_normalize
 
 
 class GaussianFilter(nn.Module):
-    def __init__(self, module_size: int) -> None:
+    def __init__(self, module_size: int, filter_thres: float = 0.1) -> None:
         super().__init__()
         self.module_size = module_size
+        self.filter_thres = filter_thres
         self.conv = nn.Conv2d(
             in_channels=1,
             out_channels=1,
@@ -26,10 +27,12 @@ class GaussianFilter(nn.Module):
     def _setup_filter_weights(self) -> None:
         filter_1d = cv2.getGaussianKernel(
             ksize=self.module_size,
-            sigma=int((self.module_size -1) / 5),
+            sigma=1.5,
             ktype=cv2.CV_32F
         )
         filter_2d = filter_1d * filter_1d.T
+        filter_2d = min_max_normalize(filter_2d)
+        filter_2d[filter_2d < self.filter_thres] = .0
         gaussian_filter_init = torch.tensor(filter_2d, dtype=torch.float32)
         self.conv.weight = nn.Parameter(
             gaussian_filter_init.reshape(1, 1, *gaussian_filter_init.shape),
